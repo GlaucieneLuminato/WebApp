@@ -1,41 +1,37 @@
 import React, {useState} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 
 const ImageGenerator = ()=>{
 
     const [prompt, setPrompt] = useState('');
-    const [imageUrl, setImageUrl] = seState ('');
+    const [imageUrl, setImageUrl] = useState ('');
     const [loading, setLoading] = useState (false);
 
     const handleGenerateImage = async () => {
         setLoading(true);
-        try{
-            const response= awaitaxios.post(
-                'https://api.prodia.com/v1/generate',
-            )
-        }
-        prompt:prompt
-        model: 'model_id', 
-        steps: 50,
-        cfg_scale: 7.5,
-        seed: null,
-        upscale: false,
-      },
-    
+       try{
+        const response = await
+        axios.post('https://api.prodia.com/v1/generate', {
 
-    {
+            prompt: prompt,
+            model:"model_id",
+            steps:20,
+            cfg_scale: 7.5,
+            seed:null,
+            upsacle: false,
+        })
         headers:{
-            Authorization:'Bearer SUA_CHAVE_DE_API_AQUI',
-            'content-Type:'application/json'
-
+            Authorization: 'Bearer ${process.env.REACT_APP_API_KEY}',
+            'Content-Type':'application/json'
+        }
+        setImageUrl(response.data.image-url);
+    } catch (error){
+        console.error("Erro ao gerar imagem", error);
     }
 
-}
-
-setImageUrl (response.data.image_url); catch (error){
-
-    consoleerror('Erro ao gerar a imagem:', error);
-}
+       }
+      
 
 setLoading(false);
 
@@ -58,4 +54,4 @@ return(
       {imageUrl && <img src={imageUrl} alt="imagem gerada" />}
     </div>
 )
-export default ImagemGenerator
+export default ImageGenerator
