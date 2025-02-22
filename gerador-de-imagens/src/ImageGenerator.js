@@ -23,7 +23,7 @@ const ImageGenerator = ()=>{
         })
         headers:{
             Authorization: 'Bearer ${process.env.REACT_APP_API_KEY}',
-            'Content-Type':'application/json'
+            'Content-Type';'application/json'
         }
         setImageUrl(response.data.image-url);
     } catch (error){
@@ -54,4 +54,4 @@ return(
       {imageUrl && <img src={imageUrl} alt="imagem gerada" />}
     </div>
 )
-export default ImageGenerator
+   export default ImageGenerator;
